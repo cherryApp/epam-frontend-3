@@ -6,12 +6,6 @@ console.log("dataTable js is loaded");
  * Datatable module for dynamic tables.
  */
 (function(global) {
-    // Settings.
-    var settings = global.dataTableSettings || {
-        dataUrl: "",
-        localStorageProvider: null
-    };
-
     // Collection object for store table row objects.
     var collection = {};
 
@@ -36,18 +30,36 @@ console.log("dataTable js is loaded");
     };
 
     // Handle collection data.
-    var collection = function() {
+    var collection = function(settings) {
+        // Settings.
+        settings = settings || {
+            dataUrl: ""
+        };
+
+        var collectionArray = [];
+
         // Init collection.
         this.init = function() {
-            
+            if (!localStorage.myDataTableArray) {
+                this.getFromServer();
+            } else {
+                this.getFromLocalStorage();
+            }
         };
 
         // Get data from server.
         this.getFromServer = function() {
-            
+            console.log("get from server");
         };
 
-
         // Get data from localStorage.
+        // Todo: read localStorage.myDataTableArray, parse and save to collectionArray
+        this.getFromLocalStorage = function() {
+            console.log("get from localStorage");
+        };
     };
+
+    // Public methods.
+    this.init();
+    global.DataTable = collection;
 })(window);

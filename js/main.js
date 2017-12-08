@@ -1,1 +1,4 @@
-console.log("main js is loaded");
+var table = new window.DataTable({
+    dataUrl: "",
+    table: ".data-table.container table"
+});
