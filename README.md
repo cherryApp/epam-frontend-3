@@ -1,7 +1,7 @@
 # Generic Javascript nagyfeladat
 
 ## Leírás
-> A feladat, hogy eteketek egy úgynevezett CRUD table modult. 
+> A feladat, hogy készítsetek egy úgynevezett CRUD table modult. 
 Ez az alapvető adatkezelési műveleteket valósítja meg:  
 * C = create
 * R = read
