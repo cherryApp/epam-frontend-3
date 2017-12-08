@@ -47,9 +47,21 @@ console.log("dataTable js is loaded");
             }
         };
 
+        // Process data form the server.
+        this.processServerData = function(ev) {
+            try {
+                collectionArray = JSON.parse(ev.target.response);
+            } catch(e) {
+                console.error("Invalid JSON!");
+            }
+        }
+
         // Get data from server.
         this.getFromServer = function() {
-            console.log("get from server");
+            var xhr = new XMLHttpRequest;
+            xhr.open("get", settings.dataUrl);
+            xhr.addEventListener("load", this.processServerData.bind(this));
+            xhr.send();
         };
 
         // Get data from localStorage.
