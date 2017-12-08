@@ -12,6 +12,10 @@
         // Private entity.
         var entity = entity;
 
+        for (var k in entity) {
+            this[k] = entity[k];
+        }
+
         // Public getter for entity.
         this.getEntity = function() {
             return entity;
@@ -37,7 +41,7 @@
 
         var collectionArray = [],
             targetTable = null;
-            
+
         // Init collection.
         this.init = function() {
             targetTable = document.querySelector(settings.table);
@@ -91,6 +95,7 @@
                 collectionArray = JSON.parse(ev.target.response);
                 console.log(collectionArray);
                 this.processRows();
+                this.updateLocalStorage();
             } catch(e) {
                 console.error("Invalid JSON!");
             }
@@ -107,6 +112,7 @@
         // Get data from localStorage.
         this.getFromLocalStorage = function() {
             collectionArray = JSON.parse(localStorage.myDataTableArray);
+            this.processRows();
             console.log("get from localStorage");
         };
 
