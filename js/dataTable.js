@@ -35,9 +35,14 @@
             table: ""
         };
 
+<<<<<<< HEAD
         var collectionArray = [],
             targetTable = null;
 
+=======
+        var collectionArray = [];
+        //localStorage.myDataTableArray = "";
+>>>>>>> 8f6e5b5aab4c388d1b70dd55284c49647e4161d5
         // Init collection.
         this.init = function() {
             targetTable = document.querySelector(settings.table);
@@ -105,9 +110,14 @@
         };
 
         // Get data from localStorage.
-        // Todo: read localStorage.myDataTableArray, parse and save to collectionArray
         this.getFromLocalStorage = function() {
+            collectionArray = JSON.parse(localStorage.myDataTableArray);
             console.log("get from localStorage");
+        };
+
+        this.updateLocalStorage = function() {
+            localStorage.myDataTableArray = JSON.stringify(collectionArray);
+            console.log("Local Storage Updated");
         };
 
         this.init();
