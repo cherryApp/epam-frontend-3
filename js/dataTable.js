@@ -1,7 +1,5 @@
 "use strict";
 
-console.log("dataTable js is loaded");
-
 /**
  * Datatable module for dynamic tables.
  */
@@ -51,6 +49,7 @@ console.log("dataTable js is loaded");
         this.processServerData = function(ev) {
             try {
                 collectionArray = JSON.parse(ev.target.response);
+                console.log(collectionArray);
             } catch(e) {
                 console.error("Invalid JSON!");
             }
@@ -69,9 +68,10 @@ console.log("dataTable js is loaded");
         this.getFromLocalStorage = function() {
             console.log("get from localStorage");
         };
+
+        this.init();
     };
 
     // Public methods.
-    this.init();
     global.DataTable = collection;
 })(window);
