@@ -35,14 +35,9 @@
             table: ""
         };
 
-<<<<<<< HEAD
         var collectionArray = [],
             targetTable = null;
-
-=======
-        var collectionArray = [];
-        //localStorage.myDataTableArray = "";
->>>>>>> 8f6e5b5aab4c388d1b70dd55284c49647e4161d5
+            
         // Init collection.
         this.init = function() {
             targetTable = document.querySelector(settings.table);
