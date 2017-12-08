@@ -31,13 +31,16 @@
     var collection = function(settings) {
         // Settings.
         settings = settings || {
-            dataUrl: ""
+            dataUrl: "",
+            table: ""
         };
 
-        var collectionArray = [];
+        var collectionArray = [],
+            targetTable = null;
 
         // Init collection.
         this.init = function() {
+            targetTable = document.querySelector(settings.table);
             if (!localStorage.myDataTableArray) {
                 this.getFromServer();
             } else {
@@ -45,11 +48,49 @@
             }
         };
 
+        // Process table rows.
+        this.processRows = function() {
+            for (var k in collectionArray) {
+                collectionArray[k] = new TableRow(collectionArray[k]);
+            }
+            this.refreshTable();
+        };
+
+        // Show table.
+        this.refreshTable = function() {
+            this.generateHeader();
+        };
+
+        // Generate header.
+        this.generateHeader = function() {
+            var thRow = targetTable.querySelector("thead tr");
+            thRow.innerHTML = "";
+            thRow.appendChild( this.createCell("th", "#") );
+            console.log(collectionArray);
+            for (var k in collectionArray[0].getEntity()) {
+                thRow.appendChild( this.createCell("th", k) );
+            }
+            thRow.appendChild( this.createCell("th", "#") );
+        };
+
+        // Generate tr.
+        this.generateTrs = function(record) {
+
+        };
+
+        // Add table cell.
+        this.createCell = function(type, content) {
+            var cell = document.createElement(type);
+            cell.innerHTML = content;
+            return cell;
+        };
+
         // Process data form the server.
         this.processServerData = function(ev) {
             try {
                 collectionArray = JSON.parse(ev.target.response);
                 console.log(collectionArray);
+                this.processRows();
             } catch(e) {
                 console.error("Invalid JSON!");
             }
