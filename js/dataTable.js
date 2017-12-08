@@ -63,6 +63,7 @@
         // Show table.
         this.refreshTable = function() {
             this.generateHeader();
+            this.generateTrs();
         };
 
         // Generate header.
@@ -79,7 +80,20 @@
 
         // Generate tr.
         this.generateTrs = function(record) {
+          var tb = targetTable.querySelector("tbody");
 
+          tb.innerHTML = "";
+
+          for(var i = 0; i < collectionArray.length; i++) {
+            var tr = document.createElement("tr");
+            tr.appendChild(this.createCell("td", i+1));
+            var ent = collectionArray[i].getEntity();
+            for(var k in ent) {
+                tr.appendChild(this.createCell("td", ent[k]));
+            }
+            tr.appendChild(this.createCell("td","<div class=\"btn-group\"><button class=\"btn btn-primary\">1</button><button class=\"btn btn-secondary\">2</button></div>"));
+            tb.appendChild(tr);
+          }
         };
 
         // Add table cell.
