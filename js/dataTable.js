@@ -35,7 +35,7 @@
         };
 
         var collectionArray = [];
-
+        //localStorage.myDataTableArray = "";
         // Init collection.
         this.init = function() {
             if (!localStorage.myDataTableArray) {
@@ -64,9 +64,14 @@
         };
 
         // Get data from localStorage.
-        // Todo: read localStorage.myDataTableArray, parse and save to collectionArray
         this.getFromLocalStorage = function() {
+            collectionArray = JSON.parse(localStorage.myDataTableArray);
             console.log("get from localStorage");
+        };
+
+        this.updateLocalStorage = function() {
+            localStorage.myDataTableArray = JSON.stringify(collectionArray);
+            console.log("Local Storage Updated");
         };
 
         this.init();
